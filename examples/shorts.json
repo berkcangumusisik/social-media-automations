@@ -1,0 +1,15 @@
+{
+  "_comment": "No AI. Text comes straight from this file. Runs without the claude CLI. First run: social-auto init-demo",
+  "duration": 6,
+  "title": "3 saniyede dikkat çek",
+  "subtitles": [
+    { "text": "İlk üç saniye her şey", "start": 0, "end": 2 },
+    { "text": "Hook olmadan kaydırılırsın", "start": 2, "end": 4 },
+    { "text": "Önce değeri göster, sonra anlat", "start": 4, "end": 6 }
+  ],
+  "caption": "Kısa videoda ilk üç saniye kaderini belirler. Hook'u en başa koy.",
+  "hashtags": ["#kısavideo", "#içerik", "#shorts"],
+  "input": { "video": "assets/demo-clip.mp4" },
+  "music": { "path": "assets/demo-music.m4a", "volume": 0.5 },
+  "output": "../out/shorts.mp4"
+}

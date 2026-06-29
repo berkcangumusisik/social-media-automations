@@ -1,0 +1,12 @@
+{
+  "_comment": "Mode: viral. No brief or topic, so Claude picks a trending idea for the niche and writes everything. Needs the claude CLI.",
+  "ai": {
+    "niche": "yazılım ve developer mizahı",
+    "language": "tr",
+    "tone": "esprili, enerjik"
+  },
+  "duration": 8,
+  "input": { "video": "assets/demo-clip.mp4" },
+  "music": { "path": "assets/demo-music.m4a", "volume": 0.4 },
+  "output": "../out/tiktok.mp4"
+}

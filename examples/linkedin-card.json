@@ -1,0 +1,14 @@
+{
+  "_comment": "image-card template on a post platform. With AI it writes the card text; with --no-ai it uses title/caption below.",
+  "ai": {
+    "niche": "engineering leadership",
+    "brief": "why code review is really about shared context, not gatekeeping",
+    "language": "en",
+    "tone": "thoughtful, concrete"
+  },
+  "title": "Code review is shared context, not a gate",
+  "caption": "Reviews spread understanding across the team. Gatekeeping is a side effect, not the goal.",
+  "hashtags": ["#engineering", "#codereview", "#teams"],
+  "input": { "background": "#0e2a3a" },
+  "output": "../out/linkedin.jpg"
+}

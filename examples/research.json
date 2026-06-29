@@ -1,0 +1,13 @@
+{
+  "_comment": "Mode: research. Claude researches the topic on the web (WebSearch/WebFetch) and writes current, trend-aware content. Needs the claude CLI.",
+  "ai": {
+    "topic": "2026 yapay zeka kodlama araçları trendleri",
+    "research": true,
+    "niche": "yazılım geliştirme",
+    "language": "tr",
+    "tone": "bilgilendirici ama sade"
+  },
+  "duration": 10,
+  "input": { "video": "assets/demo-clip.mp4" },
+  "output": "../out/research.mp4"
+}

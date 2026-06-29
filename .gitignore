@@ -1,0 +1,7 @@
+node_modules/
+out/
+examples/assets/
+*.log
+.DS_Store
+.env
+coverage/

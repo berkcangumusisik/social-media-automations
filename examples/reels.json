@@ -1,0 +1,12 @@
+{
+  "_comment": "Mode: brief. A specific brief is given, Claude writes to it. Needs the claude CLI.",
+  "ai": {
+    "niche": "indie product makers",
+    "brief": "the fear of deploying to production on a Friday",
+    "language": "en",
+    "tone": "playful, a bit dramatic"
+  },
+  "duration": 10,
+  "input": { "background": "#10131a" },
+  "output": "../out/reels.mp4"
+}

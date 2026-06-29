@@ -1,0 +1,19 @@
+{
+  "_comment": "Multiple jobs in one run. These use noAi so the batch runs without the claude CLI. First run: social-auto init-demo",
+  "jobs": [
+    {
+      "platform": "youtube-shorts",
+      "template": "clean-caption",
+      "config": "shorts.json",
+      "output": "../out/batch-shorts.mp4",
+      "noAi": true
+    },
+    {
+      "platform": "tiktok",
+      "template": "bold-center",
+      "config": "shorts.json",
+      "output": "../out/batch-tiktok.mp4",
+      "noAi": true
+    }
+  ]
+}

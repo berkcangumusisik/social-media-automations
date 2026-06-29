@@ -1,0 +1,44 @@
+{
+  "name": "social-media-automations",
+  "version": "0.1.0",
+  "description": "Open source CLI that writes social content with Claude Code and renders platform-ready video and images with FFmpeg.",
+  "type": "module",
+  "bin": {
+    "social-auto": "bin/social-auto.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "start": "node bin/social-auto.js"
+  },
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "keywords": [
+    "social-media",
+    "automation",
+    "ffmpeg",
+    "video",
+    "reels",
+    "tiktok",
+    "youtube-shorts",
+    "claude",
+    "content-generation",
+    "cli"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "pureimage": "^0.4.18",
+    "yaml": "^2.5.1"
+  },
+  "files": [
+    "bin",
+    "src",
+    "assets",
+    "examples",
+    "README.md",
+    "README.tr.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ]
+}
