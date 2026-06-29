@@ -41,11 +41,12 @@ test('video templates produce overlays with placed text blocks', () => {
     const plan = getTemplate(name).buildPlan(fakeCtx());
     assert.equal(plan.kind, 'video', `${name} kind`);
     assert.ok(plan.overlays.length > 0, `${name} has overlays`);
-    const block = plan.overlays[0].blocks[0];
-    assert.ok(block.text, `${name} overlay has text`);
-    assert.ok(Number.isFinite(block.fontPx), `${name} overlay has fontPx`);
-    // Blocks must sit inside the frame.
-    assert.ok(block.x >= 0 && block.y >= 0 && block.x + block.w <= 1080);
+    const textBlocks = plan.overlays.flatMap((o) => o.blocks).filter((b) => b.text);
+    assert.ok(textBlocks.length > 0, `${name} has a text block`);
+    const block = textBlocks[0];
+    assert.ok(Number.isFinite(block.fontPx), `${name} text block has fontPx`);
+    // Text blocks must sit inside the frame.
+    assert.ok(block.x >= 0 && block.y >= 0 && block.x + block.w <= 1080, `${name} inside frame`);
   }
 });
 

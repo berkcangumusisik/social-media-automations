@@ -50,7 +50,7 @@ export async function composeVideo(ctx, overlays) {
   if (config.input?.video) {
     args.push('-i', config.input.video);
   } else {
-    const bg = config.input?.background || '#101418';
+    const bg = config.input?.background || preset.theme?.cardBg || '#101418';
     args.push('-f', 'lavfi', '-i', `color=c=${bg}:s=${w}x${preset.height}:d=${duration}:r=${preset.fps}`);
   }
 
@@ -117,7 +117,7 @@ export async function composeImage(ctx, overlays) {
   if (config.input?.image) {
     args.push('-loop', '1', '-t', '1', '-i', config.input.image);
   } else {
-    const bg = config.input?.background || '#101418';
+    const bg = config.input?.background || preset.theme?.cardBg || '#101418';
     args.push('-f', 'lavfi', '-i', `color=c=${bg}:s=${w}x${h}:d=1:r=1`);
   }
   args.push('-i', png);

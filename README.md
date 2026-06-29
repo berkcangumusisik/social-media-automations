@@ -1,5 +1,10 @@
 # social-media-automations
 
+[![CI](https://github.com/berkcangumusisik/social-media-automations/actions/workflows/ci.yml/badge.svg)](https://github.com/berkcangumusisik/social-media-automations/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D20.6-brightgreen.svg)](https://nodejs.org)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 Open source CLI that writes social media content with your local **Claude Code** and renders platform ready video and images with **FFmpeg**.
 
 You give it a niche, a brief, or just a topic to research. Claude Code writes the hook, the on screen text, the timed subtitles, the caption and the hashtags. Then a template renders a vertical video (or a still card) sized for the platform you picked, with the text kept inside the safe area so it never lands under the platform UI.
@@ -26,7 +31,7 @@ Most "AI content" tools want an API key and a paid plan. This one does not. It c
 ## Install
 
 ```bash
-git clone https://github.com/your-org/social-media-automations.git
+git clone https://github.com/berkcangumusisik/social-media-automations.git
 cd social-media-automations
 npm install
 npm link        # optional, gives you the global "social-auto" command
@@ -102,11 +107,13 @@ Run `social-auto list-templates` for the live list.
 
 | Template | Kind | What it looks like |
 | --- | --- | --- |
-| hook-subtitle | video | Big hook line at the top, timed subtitles in the lower middle. |
-| clean-caption | video | Minimal single caption at the bottom. |
-| bold-center | video | One large centered statement, cover card style. |
-| word-pop | video | Punchy centered captions with a karaoke feel. |
-| image-card | image | Still card with a centered title for post platforms. |
+| hook-subtitle | video | Hook on a brand coloured pill at the top, timed caption pills below. |
+| clean-caption | video | Minimal caption on a soft dark pill at the bottom. |
+| bold-center | video | One large centered statement with an accent bar, cover card style. |
+| word-pop | video | Punchy centered captions on a brand coloured pill, karaoke feel. |
+| image-card | image | Editorial card with an accent bar and left aligned title for post platforms. |
+
+Each platform carries a theme (accent colour and a default card background), so output looks tailored: TikTok pink, Instagram magenta, YouTube red, LinkedIn blue, X blue, Facebook blue. Pills and accent bars use that colour automatically.
 
 ## Platforms
 
@@ -141,8 +148,14 @@ Each text block is wrapped, aligned inside the platform safe area and rasterized
 
 ## Contributing
 
-New platforms and templates are meant to be easy to add: one file plus one line in a registry. See [CONTRIBUTING.md](CONTRIBUTING.md) ([Türkçe](CONTRIBUTING.tr.md)).
+New platforms and templates are meant to be easy to add: one file plus one line in a registry. See [CONTRIBUTING.md](CONTRIBUTING.md) ([Türkçe](CONTRIBUTING.tr.md)) for the contract, and [ROADMAP.md](ROADMAP.md) for ideas and good first issues.
+
+One house rule worth repeating: no em-dash anywhere, write in a plain human voice. That applies to code, docs, and the content prompts.
+
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). See [assets/fonts/NOTICE.md](assets/fonts/NOTICE.md) for the bundled font license.

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/berkcangumusisik/social-media-automations/discussions
+    about: Ask a question or share an idea in Discussions.
+  - name: Contributing guide
+    url: https://github.com/berkcangumusisik/social-media-automations/blob/main/CONTRIBUTING.md
+    about: How to add a platform or a template.

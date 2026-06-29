@@ -26,6 +26,15 @@
     "cli"
   ],
   "license": "MIT",
+  "author": "Berkcan Gumususik",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berkcangumusisik/social-media-automations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/berkcangumusisik/social-media-automations/issues"
+  },
+  "homepage": "https://github.com/berkcangumusisik/social-media-automations#readme",
   "dependencies": {
     "commander": "^12.1.0",
     "pureimage": "^0.4.18",

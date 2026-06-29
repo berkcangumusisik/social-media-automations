@@ -65,9 +65,40 @@ function wrapLines(ctx, text, maxWidth) {
   return out;
 }
 
-// Draw one text block: wrap to its box, align, and add a faux outline by drawing
-// the outline colour at eight offsets before the fill colour on top. This avoids
-// pureimage strokeText path warnings and reads well over busy video.
+// Fill a rounded rectangle, using the native roundRect when available and a
+// manual path otherwise.
+function fillRoundRect(ctx, x, y, w, h, r) {
+  const radius = Math.max(0, Math.min(r, w / 2, h / 2));
+  ctx.beginPath();
+  if (typeof ctx.roundRect === 'function') {
+    ctx.roundRect(x, y, w, h, radius);
+  } else {
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + w - radius, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+    ctx.lineTo(x + w, y + h - radius);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+    ctx.lineTo(x + radius, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+  }
+  ctx.fill();
+}
+
+// Draw a decorative solid shape (currently a rounded rectangle), used for accent
+// bars and panels in templates.
+function drawShape(ctx, shape) {
+  const prevAlpha = ctx.globalAlpha;
+  ctx.globalAlpha = shape.opacity ?? 1;
+  ctx.fillStyle = hexToRgba(shape.color || '#FFFFFF', 1);
+  fillRoundRect(ctx, shape.x, shape.y, shape.w, shape.h, shape.radius ?? Math.round(shape.h / 2));
+  ctx.globalAlpha = prevAlpha;
+}
+
+// Draw one text block: wrap to its box, align, optionally draw a rounded panel
+// behind the text (modern caption style), and add a faux outline for legibility.
 function drawBlock(ctx, block, family) {
   const fontPx = block.fontPx;
   ctx.font = `${fontPx}pt ${family}`;
@@ -86,14 +117,38 @@ function drawBlock(ctx, block, family) {
 
   const align = block.align || 'center';
   ctx.textAlign = align;
-  const cx = align === 'center' ? block.x + block.w / 2 : block.x;
+  const cx = align === 'center' ? block.x + block.w / 2 : align === 'right' ? block.x + block.w : block.x;
+
+  // Optional rounded panel behind the text (modern caption look).
+  if (block.box) {
+    const widths = lines.map((l) => ctx.measureText(l).width);
+    const maxW = Math.max(0, ...widths);
+    const padX = block.box.padX ?? Math.round(fontPx * 0.45);
+    const padY = block.box.padY ?? Math.round(fontPx * 0.3);
+    const capTop = top + fontPx * 0.2;
+    const lastBaseline = top + (lines.length - 1) * lineHeight + fontPx;
+    const textBottom = lastBaseline + fontPx * 0.08;
+    const boxW = maxW + padX * 2;
+    const boxH = textBottom - capTop + padY * 2;
+    let boxX;
+    if (align === 'center') boxX = cx - boxW / 2;
+    else if (align === 'right') boxX = block.x + block.w - boxW;
+    else boxX = block.x - padX;
+    const prevAlpha = ctx.globalAlpha;
+    ctx.globalAlpha = block.box.opacity ?? 0.55;
+    ctx.fillStyle = hexToRgba(block.box.color || '#000000', 1);
+    fillRoundRect(ctx, boxX, capTop - padY, boxW, boxH, block.box.radius ?? Math.round(boxH * 0.32));
+    ctx.globalAlpha = prevAlpha;
+  }
 
   // Outline radius in pixels. We stamp the text in the outline colour at every
   // integer offset within a filled disk of this radius, then draw the fill on
   // top. A solid disk (not just 8 directions) keeps the outline continuous around
   // small high diacritics like the Turkish breve on g, the dot on I, and umlauts,
-  // which an 8-point ring renders as detached ghost marks.
-  const radius = block.outline === false ? 0 : Math.min(5, Math.max(2, Math.round(fontPx * 0.045)));
+  // which an 8-point ring renders as detached ghost marks. With a panel behind
+  // the text the outline is off by default for a cleaner look.
+  const wantOutline = block.box ? block.outline === true : block.outline !== false;
+  const radius = wantOutline ? Math.min(5, Math.max(2, Math.round(fontPx * 0.045))) : 0;
   const fill = hexToRgba(block.color || '#FFFFFF');
   const outlineColor = hexToRgba(block.outlineColor || '#000000');
 
@@ -121,7 +176,8 @@ export async function renderOverlayPng({ width, height, blocks, fontPath, outPat
   const ctx = img.getContext('2d');
   ctx.clearRect(0, 0, width, height);
   for (const block of blocks) {
-    if (block.text && String(block.text).trim()) drawBlock(ctx, block, family);
+    if (block.shape) drawShape(ctx, block);
+    else if (block.text && String(block.text).trim()) drawBlock(ctx, block, family);
   }
   await PImage.encodePNGToStream(img, createWriteStream(outPath));
   return outPath;

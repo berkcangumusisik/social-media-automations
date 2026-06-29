@@ -4,6 +4,10 @@
 // text, because platform UI elements (captions, action buttons, profile) sit
 // there. Templates read these margins so on-screen text never lands under the UI.
 //
+// theme carries a per-platform accent colour and a default card background so
+// output looks tailored to each platform. accent is used for highlights and bars,
+// cardBg is the fallback background for still cards when no image is supplied.
+//
 // To add a platform: append an object here with a unique id. Nothing else in the
 // core needs to change. See CONTRIBUTING.md for the field contract.
 
@@ -21,6 +25,7 @@ export const PRESETS = [
     acodec: 'aac',
     vbitrate: '8M',
     safeArea: { top: 0.06, bottom: 0.2, left: 0.05, right: 0.12 },
+    theme: { accent: '#FE2C55', cardBg: '#16161d' },
   },
   {
     id: 'instagram-reels',
@@ -35,6 +40,7 @@ export const PRESETS = [
     acodec: 'aac',
     vbitrate: '8M',
     safeArea: { top: 0.07, bottom: 0.2, left: 0.05, right: 0.12 },
+    theme: { accent: '#E1306C', cardBg: '#1a1320' },
   },
   {
     id: 'youtube-shorts',
@@ -49,6 +55,7 @@ export const PRESETS = [
     acodec: 'aac',
     vbitrate: '10M',
     safeArea: { top: 0.06, bottom: 0.16, left: 0.05, right: 0.1 },
+    theme: { accent: '#FF0033', cardBg: '#1a0f12' },
   },
   {
     id: 'instagram-post',
@@ -63,6 +70,7 @@ export const PRESETS = [
     acodec: 'aac',
     vbitrate: '0',
     safeArea: { top: 0.06, bottom: 0.06, left: 0.06, right: 0.06 },
+    theme: { accent: '#E1306C', cardBg: '#241726' },
   },
   {
     id: 'linkedin-post',
@@ -76,7 +84,8 @@ export const PRESETS = [
     vcodec: 'mjpeg',
     acodec: 'aac',
     vbitrate: '0',
-    safeArea: { top: 0.07, bottom: 0.07, left: 0.07, right: 0.07 },
+    safeArea: { top: 0.08, bottom: 0.08, left: 0.08, right: 0.08 },
+    theme: { accent: '#0A66C2', cardBg: '#0b2239' },
   },
   {
     id: 'x-post',
@@ -90,7 +99,8 @@ export const PRESETS = [
     vcodec: 'mjpeg',
     acodec: 'aac',
     vbitrate: '0',
-    safeArea: { top: 0.08, bottom: 0.08, left: 0.06, right: 0.06 },
+    safeArea: { top: 0.09, bottom: 0.09, left: 0.07, right: 0.07 },
+    theme: { accent: '#1D9BF0', cardBg: '#15202b' },
   },
   {
     id: 'facebook-post',
@@ -104,6 +114,7 @@ export const PRESETS = [
     vcodec: 'mjpeg',
     acodec: 'aac',
     vbitrate: '0',
-    safeArea: { top: 0.07, bottom: 0.07, left: 0.07, right: 0.07 },
+    safeArea: { top: 0.08, bottom: 0.08, left: 0.07, right: 0.07 },
+    theme: { accent: '#1877F2', cardBg: '#0e1b2e' },
   },
 ];

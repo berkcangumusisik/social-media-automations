@@ -1,11 +1,11 @@
-// clean-caption: minimal single caption track at the bottom safe band. No hook,
-// no extra styling. Use when the footage speaks for itself.
+// clean-caption: a single caption on a soft dark pill at the bottom safe band.
+// Minimal and modern, use when the footage speaks for itself.
 
 import { bottomBand, fontPx, cueOverlays, toCues, autoTimeCues } from './_helpers.js';
 
 export default {
   name: 'clean-caption',
-  description: 'Minimal bottom caption only, inside the safe area.',
+  description: 'Minimal bottom caption on a soft pill, inside the safe area.',
   kind: 'video',
   supports: ['tiktok', 'instagram-reels', 'youtube-shorts'],
 
@@ -22,6 +22,8 @@ export default {
       fontPx: fontPx(preset, 0.04),
       align: 'center',
       valign: 'middle',
+      color: '#FFFFFF',
+      box: { color: '#0A0A0F', opacity: 0.5 },
     }));
 
     return { kind: 'video', overlays };
