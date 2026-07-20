@@ -37,7 +37,7 @@
   "homepage": "https://github.com/berkcangumusisik/social-media-automations#readme",
   "dependencies": {
     "commander": "^12.1.0",
-    "pureimage": "^0.4.18",
+    "pureimage": "^0.4.20",
     "yaml": "^2.5.1"
   },
   "files": [
