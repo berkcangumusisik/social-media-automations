@@ -38,7 +38,7 @@
   "dependencies": {
     "commander": "^12.1.0",
     "pureimage": "^0.4.18",
-    "yaml": "^2.5.1"
+    "yaml": "^2.9.1"
   },
   "files": [
     "bin",
